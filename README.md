@@ -1,6 +1,6 @@
 # Shooting Planets Survival
 
-![Snapshot](assets/Snapshot.png)
+![Snapshot](assets/Snapshot1.png)
 ![Snapshot](assets/Snapshot2.png)
 
 ---
