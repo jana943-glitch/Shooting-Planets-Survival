@@ -1,0 +1,37 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Ball Survival"
+run/main_scene="uid://bmr46j6euljve"
+config/features=PackedStringArray("4.5", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+g="*res://scripts/g.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[global_group]
+
+balls=""
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Balls"
+
+[rendering]
+
+renderer/rendering_method="mobile"

@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=3 uid="uid://bmr46j6euljve"]
+
+[ext_resource type="Script" uid="uid://bdeiux6rsx43f" path="res://scripts/Main.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://ds88lbd253a0a" path="res://scripts/Spawner.gd" id="2_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://bl5ydmmffakbn" path="res://assets/background.png" id="2_tefeu"]
+[ext_resource type="Script" uid="uid://venmmsteoaw" path="res://scripts/ObjectPool.gd" id="3_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://c5rpsw322wg2h" path="res://scenes/mouse_player.tscn" id="4_tefeu"]
+[ext_resource type="Script" uid="uid://u77kb3alwc07" path="res://scripts/ui.gd" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://c1q6q3sa8arg2" path="res://assets/BackgroundTabsMenu.png" id="7_85g3d"]
+[ext_resource type="Texture2D" uid="uid://b4jkqncuevwlf" path="res://assets/TitleContainerExit.png" id="8_choun"]
+[ext_resource type="Texture2D" uid="uid://7t16kug20e8b" path="res://assets/ButtonSocialBlue.png" id="9_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://1sk7vw5njruq" path="res://assets/IconPlay.png" id="9_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://c054p6s5qnsvb" path="res://assets/ButtonSocialBlueActive.png" id="10_trceg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o6xl0"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_tbgi4"]
+font_size = 70
+font_color = Color(0.5068974, 0.3690338, 0.2403045, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tefeu"]
+font_size = 30
+
+[node name="Main" type="Node"]
+script = ExtResource("1_o5qli")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tefeu")
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("2_jyhfs")
+
+[node name="Pool" type="Node2D" parent="."]
+script = ExtResource("3_tbgi4")
+
+[node name="MouseArea" parent="." instance=ExtResource("4_tefeu")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_tbgi4")
+
+[node name="GameOverPanel" type="TextureRect" parent="HUD"]
+offset_left = 326.0
+offset_top = 103.0
+offset_right = 826.0
+offset_bottom = 603.0
+texture = ExtResource("7_85g3d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RestartButton" type="TextureButton" parent="HUD/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -172.0
+offset_right = 179.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("9_eb6dy")
+texture_pressed = ExtResource("10_trceg")
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="HUD/GameOverPanel/RestartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 16.99997
+offset_right = -24.0
+offset_bottom = -53.00003
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_ya4ey")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="highscore container" type="Sprite2D" parent="HUD/GameOverPanel"]
+position = Vector2(250, 111)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("8_choun")
+
+[node name="Control" type="Control" parent="HUD/GameOverPanel/highscore container"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.5
+offset_top = -81.35669
+offset_right = -248.5
+offset_bottom = -81.35669
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.05235988
+
+[node name="HighScoreLabel" type="Label" parent="HUD/GameOverPanel/highscore container/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.85461
+offset_top = -34.177917
+offset_right = 156.14539
+offset_bottom = 34.822083
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "HighScore: 0"
+label_settings = SubResource("LabelSettings_o6xl0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="HUD/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -48.0
+offset_right = 200.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_tbgi4")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+metadata/_edit_lock_ = true
+
+[node name="ScoreLabel" type="Label" parent="HUD/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Score : 0 seconds"
+label_settings = SubResource("LabelSettings_tefeu")
